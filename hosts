@@ -1,0 +1,9 @@
+[masters]
+master ansible_host=172.168.0.100 ansible_user=root
+
+[workers]
+elastic_kibana ansible_host=172.168.0.111 ansible_user=root
+logstash ansible_host=172.168.0.112 ansible_user=root
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3
