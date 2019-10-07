@@ -1,0 +1,44 @@
+- hosts: all
+  become: yes
+  tasks:
+   - name: Docker Installation at all hosts
+     apt:
+       name: docker.io
+       state: present
+       update_cache: true
+
+   - name: Install APT Transport HTTPS at all hosts
+     apt:
+       name: apt-transport-https
+       state: present
+
+   - name: Add Kubernetes apt-key for APT repository at all hosts
+     apt_key:
+       url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+       state: present
+
+   - name: Add Kubernetes APT repository at all hosts
+     apt_repository:
+      repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
+      state: present
+      filename: 'kubernetes'
+
+   - name: Install kubelet at all hosts
+     apt:
+       name: kubelet=1.16.0-00
+       state: present
+       update_cache: true
+
+   - name: Install kubeadm at all hosts
+     apt:
+       name: kubeadm=1.16.0-00
+       state: present
+
+- hosts: masters
+  become: yes
+  tasks:
+   - name: Install kubectl at masters hosts
+     apt:
+       name: kubectl=1.16.0-00
+       state: present
+       force: yes
