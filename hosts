@@ -2,8 +2,11 @@
 master ansible_host=172.168.0.100 ansible_user=root
 
 [workers]
-elastic_kibana ansible_host=172.168.0.111 ansible_user=root
-logstash ansible_host=172.168.0.112 ansible_user=root
+worker_application ansible_host=172.168.0.111 ansible_user=root
+worker_infrastructure ansible_host=172.168.0.112 ansible_user=root
+worker_analytics ansible_host=172.168.0.113 ansible_user=root
+worker_machine_learning ansible_host=172.168.0.114 ansible_user=root
+worker_iot ansible_host=172.168.0.115 ansible_user=root
 
 [all:vars]
 ansible_python_interpreter=/usr/bin/python3
